@@ -14,7 +14,6 @@ const Featured = () => {
   const [state, setState] = useState({});
 
   useEffect(() => {
-    console.log(movies[movieRandomIndex]);
     if (!loading) {
       const { original_name, overview, backdrop_path } =
         movies[movieRandomIndex];

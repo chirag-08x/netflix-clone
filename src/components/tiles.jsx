@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import styled from "styled-components";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const ImageURL = `https://image.tmdb.org/t/p/original`;
 
@@ -10,6 +9,8 @@ const Tiles = ({ movies }) => {
   const refContainer = useRef(null);
   const refContainer2 = useRef(null);
   const sliderContainer = useRef(null);
+  let sliderCountRight = 0;
+  let sliderCountLeft = 0;
 
   const displaybuttons = () => {
     refContainer.current.classList.add("show-btns");
@@ -21,9 +22,23 @@ const Tiles = ({ movies }) => {
     refContainer2.current.classList.remove("show-btns");
   };
 
-  const slideLeft = () => {};
+  const slideLeft = () => {
+    if (sliderCountLeft === 0) return;
+    sliderCountLeft += 1;
+    sliderCountRight -= 1;
+    sliderContainer.current.style = `transform : translateX(${
+      sliderCountLeft * 20
+    }rem)`;
+  };
 
-  const slideRight = () => {};
+  const slideRight = () => {
+    if (sliderCountRight === 6) return;
+    sliderCountLeft -= 1;
+    sliderCountRight += 1;
+    sliderContainer.current.style = `transform : translateX(${
+      sliderCountRight * -20
+    }rem)`;
+  };
 
   return (
     <Wrapper onMouseOver={displaybuttons} onMouseLeave={hidebuttons}>
@@ -40,9 +55,9 @@ const Tiles = ({ movies }) => {
           {data.map((item) => {
             const { poster_path, id } = item;
             return (
-              <Link to={"/movie"} key={id} className="tiles-container">
+              <div to={"/movie"} key={id} className="tiles-container">
                 <img src={`${ImageURL}${poster_path}`} alt="" />
-              </Link>
+              </div>
             );
           })}
         </div>
@@ -52,15 +67,24 @@ const Tiles = ({ movies }) => {
 };
 
 const Wrapper = styled.section`
+  position: relative;
+
   .tile-parent {
+    overflow: hidden;
     div {
       display: flex;
-      overflow: hidden;
       gap: 0 0.5rem;
+      transition: all 0.5s linear;
+
+      .tiles-container {
+        flex-shrink: 0;
+        cursor: pointer;
+        img {
+          width: 7rem;
+        }
+      }
     }
   }
-
-  position: relative;
 
   button {
     position: absolute;
@@ -72,10 +96,15 @@ const Wrapper = styled.section`
     color: #e6e6e6;
     display: none;
     z-index: 5;
+    margin: 0 0.5rem;
   }
 
   .show-btns {
     display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
   }
 
   .right {
@@ -84,13 +113,6 @@ const Wrapper = styled.section`
 
   .tile-parent {
     div {
-      .tiles-container {
-        flex-shrink: 0;
-        cursor: pointer;
-        img {
-          width: 7rem;
-        }
-      }
     }
   }
 
