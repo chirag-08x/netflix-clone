@@ -53,12 +53,12 @@ body {
 }
 
 .slide-left {
-  transform: translateX(-100%);
+  transform: translateX(100%);
   transition: all 0.5s linear;
 }
 
 .slide-right {
-  transform: translateX(100%);
+  transform: translateX(-100%);
   transition: all 0.5s linear;
 }
 
@@ -74,4 +74,38 @@ body {
   .title-small {
     font-size: 1.5rem;
   }
+}
+
+.loading {
+  height: 7rem;
+  display: grid;
+  place-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .loading {
+    height: 10rem;
+  }
+}
+
+.loader {
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  border-top: 3px solid black;
+  animation: loader 0.5s infinite ease-in-out;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.page {
+  min-height: calc(100vh - 62.48px - 309.15px);
 }

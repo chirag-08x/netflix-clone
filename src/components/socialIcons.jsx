@@ -3,7 +3,7 @@ import { FaInstagram, FaFacebookF, FaYoutube, FaTwitter } from "react-icons/fa";
 
 const SocialIcons = () => {
   return (
-    <Wrapper>
+    <Wrapper className="social-icons">
       <a
         href="https://www.facebook.com/NetflixIN/"
         target="_blank"
@@ -37,6 +37,10 @@ const SocialIcons = () => {
 };
 
 const Wrapper = styled.section`
+  width: 90vw;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-self: start;
   display: flex;
   gap: 0 1rem;
   margin-bottom: 0.5rem;

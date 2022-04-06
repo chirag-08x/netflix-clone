@@ -2,7 +2,7 @@ import styled from "styled-components";
 import logo from "../assets/logo.png";
 import user from "../assets/user.jpg";
 import { Link } from "react-router-dom";
-import { FaSearch, FaBell } from "react-icons/fa";
+import { FaSearch, FaBell, FaCaretDown } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -33,6 +33,10 @@ const Navbar = () => {
           </button>
 
           <img src={user} alt="USER" className="user-img" />
+
+          <button>
+            <FaCaretDown />
+          </button>
         </div>
       </section>
     </Wrapper>
@@ -41,6 +45,11 @@ const Navbar = () => {
 
 const Wrapper = styled.nav`
   background-color: #000000;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
   .section-center {
     padding: 1rem 0;
     width: 90vw;
@@ -52,7 +61,7 @@ const Wrapper = styled.nav`
   }
 
   .nav-header {
-    width: 7rem;
+    width: 4rem;
   }
 
   .nav-links {
@@ -86,9 +95,19 @@ const Wrapper = styled.nav`
     }
 
     .user-img {
-      width: 2.5rem;
+      width: 1.8rem;
       border-radius: 0.3rem;
       cursor: pointer;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .nav-header {
+      width: 7rem;
+    }
+
+    .user-img {
+      width: 2.5rem;
     }
   }
 `;

@@ -1,5 +1,9 @@
+import styled from "styled-components";
+
 const SingleMovie = () => {
-  return <h1>Single Movie</h1>;
+  return <Wrapper className="page">Single Movie</Wrapper>;
 };
+
+const Wrapper = styled.section``;
 
 export default SingleMovie;

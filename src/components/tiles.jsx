@@ -7,9 +7,9 @@ const ImageURL = `https://image.tmdb.org/t/p/original`;
 
 const Tiles = ({ movies }) => {
   const [data, setData] = useState([...movies]);
-  const currentTileIdx = 0;
   const refContainer = useRef(null);
   const refContainer2 = useRef(null);
+  const sliderContainer = useRef(null);
 
   const displaybuttons = () => {
     refContainer.current.classList.add("show-btns");
@@ -21,32 +21,45 @@ const Tiles = ({ movies }) => {
     refContainer2.current.classList.remove("show-btns");
   };
 
+  const slideLeft = () => {};
+
+  const slideRight = () => {};
+
   return (
     <Wrapper onMouseOver={displaybuttons} onMouseLeave={hidebuttons}>
-      <button className="left" ref={refContainer}>
+      <button className="left" ref={refContainer} onClick={slideLeft}>
         <FaAngleLeft />
       </button>
 
-      <button className="right" ref={refContainer2}>
+      <button className="right" ref={refContainer2} onClick={slideRight}>
         <FaAngleRight />
       </button>
 
-      {data.map((item) => {
-        const { poster_path, id } = item;
-        return (
-          <div key={id} className="tiles-container">
-            <img src={`${ImageURL}${poster_path}`} alt="" />
-          </div>
-        );
-      })}
+      <div className="tile-parent">
+        <div ref={sliderContainer}>
+          {data.map((item) => {
+            const { poster_path, id } = item;
+            return (
+              <Link to={"/movie"} key={id} className="tiles-container">
+                <img src={`${ImageURL}${poster_path}`} alt="" />
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  display: flex;
-  gap: 0 0.5rem;
-  overflow: hidden;
+  .tile-parent {
+    div {
+      display: flex;
+      overflow: hidden;
+      gap: 0 0.5rem;
+    }
+  }
+
   position: relative;
 
   button {
@@ -58,6 +71,7 @@ const Wrapper = styled.section`
     font-size: 3rem;
     color: #e6e6e6;
     display: none;
+    z-index: 5;
   }
 
   .show-btns {
@@ -68,17 +82,30 @@ const Wrapper = styled.section`
     right: 0;
   }
 
-  .tiles-container {
-    img {
-      width: 7rem;
+  .tile-parent {
+    div {
+      .tiles-container {
+        flex-shrink: 0;
+        cursor: pointer;
+        img {
+          width: 7rem;
+        }
+      }
     }
   }
 
   @media (min-width: 768px) {
-    .tiles-container {
-      img {
-        width: 10rem;
-        transition: all 0.5s linear;
+    .tile-parent {
+      div {
+        .tiles-container {
+          width: 10rem;
+          flex-shrink: 0;
+
+          img {
+            width: 100%;
+            transition: all 0.5s linear;
+          }
+        }
       }
     }
   }

@@ -24,7 +24,7 @@ const Featured = () => {
   }, [loading]);
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return <LoadingWrapper></LoadingWrapper>;
   }
 
   const { original_name, overview, img } = state;
@@ -46,6 +46,14 @@ const Featured = () => {
     </Wrapper>
   );
 };
+
+const LoadingWrapper = styled.div`
+  height: 30rem;
+
+  @media (min-width: 768px) {
+    height: calc(100vh - 4.5rem);
+  }
+`;
 
 const Header = styled.div`
   background-image: url(${(props) => props.img});

@@ -7,7 +7,11 @@ const TopRated = () => {
   const { movies, loading } = useFetch(requests.fetchTopRated);
 
   if (loading) {
-    return <h1>Loading....</h1>;
+    return (
+      <div className="loading">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   return (

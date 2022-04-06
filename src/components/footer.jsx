@@ -7,9 +7,8 @@ const Footer = () => {
 
   return (
     <Wrapper>
+      <SocialIcons />
       <section className="footer-center">
-        <SocialIcons />
-
         <section className="footer-links">
           <article>
             <a href="#">audio and subtitles</a>
@@ -52,7 +51,7 @@ const Footer = () => {
 const Wrapper = styled.section`
   display: grid;
   place-items: center;
-  padding: 5rem 0 1rem 0;
+  padding: 4rem 0 1rem 0;
 
   .footer-center {
     width: 90vw;
@@ -67,13 +66,17 @@ const Wrapper = styled.section`
 
     .footer-links {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       margin-bottom: 1.25rem;
+      gap: 0.8rem 0;
 
       article {
         display: flex;
         flex-direction: column;
-        gap: 0.8rem 0;
+
+        a {
+          line-height: 1.75;
+        }
       }
     }
 
@@ -91,6 +94,20 @@ const Wrapper = styled.section`
     .copywright {
       p {
         font-size: 11.5px;
+      }
+    }
+  }
+
+  @media (min-width: 816px) {
+    .footer-center {
+      .footer-links {
+        grid-template-columns: repeat(4, 1fr);
+
+        article {
+          a {
+            line-height: 2;
+          }
+        }
       }
     }
   }
