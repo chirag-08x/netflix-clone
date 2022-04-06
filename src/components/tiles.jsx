@@ -1,6 +1,13 @@
 import { useState, useRef } from "react";
 import styled from "styled-components";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import {
+  FaAngleLeft,
+  FaAngleRight,
+  FaPlay,
+  FaHeart,
+  FaThumbsUp,
+  FaThumbsDown,
+} from "react-icons/fa";
 
 const ImageURL = `https://image.tmdb.org/t/p/original`;
 
@@ -42,11 +49,11 @@ const Tiles = ({ movies }) => {
 
   return (
     <Wrapper onMouseOver={displaybuttons} onMouseLeave={hidebuttons}>
-      <button className="left" ref={refContainer} onClick={slideLeft}>
+      <button className="left slide" ref={refContainer} onClick={slideLeft}>
         <FaAngleLeft />
       </button>
 
-      <button className="right" ref={refContainer2} onClick={slideRight}>
+      <button className="right slide" ref={refContainer2} onClick={slideRight}>
         <FaAngleRight />
       </button>
 
@@ -57,6 +64,21 @@ const Tiles = ({ movies }) => {
             return (
               <div to={"/movie"} key={id} className="tiles-container">
                 <img src={`${ImageURL}${poster_path}`} alt="" />
+                <button className="play-btn">
+                  <FaPlay />
+                </button>
+
+                <article className="btns">
+                  <button>
+                    <FaHeart />
+                  </button>
+                  <button>
+                    <FaThumbsUp />
+                  </button>
+                  <button>
+                    <FaThumbsDown />
+                  </button>
+                </article>
               </div>
             );
           })}
@@ -79,6 +101,58 @@ const Wrapper = styled.section`
       .tiles-container {
         flex-shrink: 0;
         cursor: pointer;
+        position: relative;
+
+        .play-btn {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: rgba(0, 0, 0, 0.5);
+          padding: 1rem 0.8rem 1rem 1rem;
+          border-radius: 50%;
+          color: white;
+          font-size: 1rem;
+          border: none;
+          place-items: center;
+          display: none;
+          @media (min-width: 768px) {
+            font-size: 2rem;
+          }
+        }
+
+        &:hover .play-btn {
+          display: grid;
+        }
+
+        &:hover .btns {
+          display: flex;
+        }
+
+        .btns {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          justify-content: space-between;
+          width: 80%;
+          display: none;
+          button {
+            background: #0a0a0a;
+            color: #e1e1e1;
+            font-size: 0.875rem;
+            border: 1px solid black;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+
+            @media (min-width: 768px) {
+              font-size: 1.085rem;
+            }
+          }
+        }
+
         img {
           width: 7rem;
         }
@@ -86,17 +160,21 @@ const Wrapper = styled.section`
     }
   }
 
-  button {
+  .slide {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     border: none;
     background: transparent;
-    font-size: 3rem;
+    font-size: 1.5rem;
     color: #e6e6e6;
     display: none;
     z-index: 5;
     margin: 0 0.5rem;
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+    }
   }
 
   .show-btns {
@@ -111,20 +189,17 @@ const Wrapper = styled.section`
     right: 0;
   }
 
-  .tile-parent {
-    div {
-    }
-  }
-
   @media (min-width: 768px) {
     .tile-parent {
       div {
+        width: 10rem;
         .tiles-container {
-          width: 10rem;
+          width: 100%;
           flex-shrink: 0;
 
           img {
             width: 100%;
+            height: 100%;
             transition: all 0.5s linear;
           }
         }

@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import user from "../assets/user.jpg";
 import { Link } from "react-router-dom";
 import { FaSearch, FaBell, FaCaretDown } from "react-icons/fa";
+import Notifications from "./notifications";
 
 const Navbar = () => {
   return (
@@ -28,8 +29,9 @@ const Navbar = () => {
             <FaSearch />
           </button>
 
-          <button>
+          <button className="notification-icon">
             <FaBell />
+            {/* <Notifications /> */}
           </button>
 
           <img src={user} alt="USER" className="user-img" />
@@ -58,6 +60,19 @@ const Wrapper = styled.nav`
     grid-template-columns: auto auto 1fr auto;
     gap: 0 2rem;
     place-items: center;
+  }
+
+  .notification-icon {
+    position: relative;
+    .notification-wrapper {
+      position: absolute;
+      top: 180%;
+      left: -27rem;
+    }
+
+    &:hover .notification-wrapper {
+      display: block;
+    }
   }
 
   .nav-header {
