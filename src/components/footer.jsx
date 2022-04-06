@@ -11,25 +11,25 @@ const Footer = () => {
       <section className="footer-center">
         <section className="footer-links">
           <article>
-            <a href="#">audio and subtitles</a>
-            <a href="#">media center</a>
-            <a href="#">privacy</a>
-            <a href="#">contact us</a>
+            <a href="/#">audio and subtitles</a>
+            <a href="/#">media center</a>
+            <a href="/#">privacy</a>
+            <a href="/#">contact us</a>
           </article>
           <article>
-            <a href="#">audio description</a>
-            <a href="#">investor relations</a>
-            <a href="#">legal notices</a>
+            <a href="/#">audio description</a>
+            <a href="/#">investor relations</a>
+            <a href="/#">legal notices</a>
           </article>
           <article>
-            <a href="#">help center</a>
-            <a href="#">jobs</a>
-            <a href="#">cookie preferences</a>
+            <a href="/#">help center</a>
+            <a href="/#">jobs</a>
+            <a href="/#">cookie preferences</a>
           </article>
           <article>
-            <a href="#">gift cards</a>
-            <a href="#">terms of use</a>
-            <a href="#">corporate information</a>
+            <a href="/#">gift cards</a>
+            <a href="/#">terms of use</a>
+            <a href="/#">corporate information</a>
           </article>
         </section>
 

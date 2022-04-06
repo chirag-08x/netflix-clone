@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { requests } from "../helper/request";
 import { FaPlay } from "react-icons/fa";
 
-const { alpharandom, movieRandomIndex } = getRandom();
+const { movieRandomIndex } = getRandom();
 
 const ImageURL = `https://image.tmdb.org/t/p/original`;
 
@@ -21,6 +21,7 @@ const Featured = () => {
       const image = `${ImageURL}${backdrop_path}`;
       setState({ original_name, overview, img: image });
     }
+    // eslint-disable-next-line
   }, [loading]);
 
   if (loading) {
